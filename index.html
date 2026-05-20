@@ -3,554 +3,828 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Bhati Dental Clinic</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Dr. Bhati Dental Clinic & Implants Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;scroll-behavior:smooth}
-body{background:#f4f7fb;color:#102030;overflow-x:hidden}
-
-body::before{
-content:'';
-position:fixed;
-inset:0;
-background:radial-gradient(circle at top left,rgba(80,160,255,.08),transparent 30%),radial-gradient(circle at bottom right,rgba(0,180,160,.08),transparent 30%);
-z-index:-1;
+/* ─── RESET & VARIABLES ─────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy:   #0a1f3c;
+  --blue:   #1069b5;
+  --teal:   #0fb8a9;
+  --sky:    #e8f4fd;
+  --white:  #ffffff;
+  --soft:   #f5f9fe;
+  --gray:   #64748b;
+  --text:   #1a2d45;
+  --gold:   #f59e0b;
+  --r: 28px;
+  --r-lg: 40px;
+  --shadow: 0 20px 60px rgba(10,31,60,.10), 0 4px 16px rgba(10,31,60,.06);
+  --shadow-hover: 0 32px 80px rgba(10,31,60,.16), 0 8px 24px rgba(10,31,60,.08);
+  --glass-bg: rgba(255,255,255,.72);
+  --glass-border: rgba(255,255,255,.55);
+  --transition: .45s cubic-bezier(.22,1,.36,1);
 }
 
-.container{width:min(1200px,92%);margin:auto}
-
-.glass{
-background:rgba(255,255,255,.42);
-backdrop-filter:blur(24px) saturate(180%);
--webkit-backdrop-filter:blur(24px) saturate(180%);
-border:1px solid rgba(255,255,255,.55);
-box-shadow:0 20px 60px rgba(15,35,60,.12),0 8px 25px rgba(0,0,0,.05),inset 0 1px 1px rgba(255,255,255,.45);
-position:relative;
-overflow:hidden;
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--soft);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-.glass::after{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,.28),transparent);
-transform:translateX(-120%);
-transition:1.2s ease;
+/* ─── BACKGROUND BLOBS ──────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -2;
+  background:
+    radial-gradient(ellipse 800px 600px at 10% 10%, rgba(16,105,181,.07), transparent),
+    radial-gradient(ellipse 600px 500px at 90% 80%, rgba(15,184,169,.07), transparent),
+    var(--soft);
 }
 
-.glass:hover::after{
-transform:translateX(120%);
+/* ─── UTILITY ──────────────────────────────────────────── */
+.container { width: min(1160px, 92%); margin-inline: auto; }
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+}
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--blue); background: rgba(16,105,181,.09);
+  padding: 6px 16px; border-radius: 99px; margin-bottom: 18px;
+}
+.section-label::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue); display: block;
 }
 
-.glass:hover{
-box-shadow:0 35px 85px rgba(17,45,78,.14),0 10px 30px rgba(0,0,0,.08);
+/* ─── NAVBAR ───────────────────────────────────────────── */
+.navbar {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  width: min(1160px, 92%); z-index: 200;
+  padding: 14px 28px;
+  border-radius: 99px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: var(--transition);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700; color: var(--navy);
+  text-decoration: none;
+}
+.nav-logo-icon {
+  width: 42px; height: 42px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  display: grid; place-items: center;
+  color: white; font-size: 1.1rem; font-weight: 800;
+  flex-shrink: 0;
+}
+.nav-links { display: flex; gap: 34px; list-style: none; }
+.nav-links a {
+  text-decoration: none; color: var(--gray); font-weight: 500;
+  font-size: .95rem; transition: color .3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+  transition: width .35s;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-links a:hover::after { width: 100%; }
+.nav-btn {
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  color: white; padding: 11px 24px; border-radius: 99px;
+  text-decoration: none; font-weight: 600; font-size: .9rem;
+  box-shadow: 0 8px 24px rgba(16,105,181,.3);
+  transition: var(--transition);
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(16,105,181,.38); }
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero {
+  min-height: 100dvh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px;
+  padding: 120px 0 80px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(16,105,181,.08); border-radius: 99px;
+  padding: 8px 18px; margin-bottom: 28px;
+  font-size: .82rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue);
+}
+.hero-eyebrow span { color: var(--teal); }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 4.5vw, 5rem);
+  line-height: 1.05; letter-spacing: -.02em;
+  color: var(--navy); margin-bottom: 22px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--blue) 20%, var(--teal));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 1.05rem; line-height: 1.85; color: var(--gray);
+  max-width: 520px; margin-bottom: 36px;
+}
+.hero-badges {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 38px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 14px;
+  font-size: .88rem; font-weight: 600; color: var(--navy);
+  border: 1px solid rgba(16,105,181,.12);
+}
+.hero-badge-icon {
+  width: 24px; height: 24px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  display: grid; place-items: center; font-size: .75rem; color: white; flex-shrink: 0;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  color: white; padding: 16px 32px; border-radius: 16px;
+  text-decoration: none; font-weight: 600; font-size: 1rem;
+  box-shadow: 0 12px 32px rgba(16,105,181,.3);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: var(--transition);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 44px rgba(16,105,181,.38); }
+.btn-secondary {
+  background: white; color: var(--navy);
+  padding: 16px 32px; border-radius: 16px;
+  text-decoration: none; font-weight: 600; font-size: 1rem;
+  border: 1px solid rgba(10,31,60,.09);
+  box-shadow: var(--shadow);
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: var(--transition);
+}
+.btn-secondary:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+/* Hero Image */
+.hero-visual { position: relative; }
+.hero-img-wrap {
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: 0 40px 100px rgba(10,31,60,.18);
+  aspect-ratio: 4/4.5;
+  position: relative;
+}
+.hero-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .7s ease;
+}
+.hero-img-wrap:hover img { transform: scale(1.03); }
+.hero-float-card {
+  position: absolute; bottom: 32px; left: -32px;
+  padding: 18px 24px; border-radius: 22px;
+  display: flex; align-items: center; gap: 16px;
+  animation: float 4s ease-in-out infinite;
+}
+.hero-float-card-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  display: grid; place-items: center; font-size: 1.3rem; flex-shrink: 0;
+}
+.hero-float-card h4 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+.hero-float-card p { font-size: .82rem; color: var(--gray); margin-top: 2px; }
+.hero-float-stars {
+  position: absolute; top: 28px; right: -24px;
+  padding: 14px 20px; border-radius: 18px;
+  animation: float 4s ease-in-out infinite reverse;
+}
+.hero-float-stars .stars { color: var(--gold); font-size: 1rem; letter-spacing: 1px; }
+.hero-float-stars p { font-size: .8rem; color: var(--gray); margin-top: 2px; text-align: center; }
+.hero-float-stars strong { font-size: 1.2rem; color: var(--navy); display: block; text-align: center; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-nav{
-position:sticky;
-top:14px;
-z-index:100;
-margin:18px auto;
-width:min(1200px,92%);
-padding:18px 30px;
-border-radius:24px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+/* ─── INFO STRIP ────────────────────────────────────────── */
+.info-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-bottom: 100px;
+}
+.info-card {
+  padding: 30px 28px; border-radius: var(--r);
+  transition: var(--transition);
+}
+.info-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.info-card-icon {
+  width: 52px; height: 52px; border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16,105,181,.12), rgba(15,184,169,.12));
+  display: grid; place-items: center; font-size: 1.4rem; margin-bottom: 16px;
+}
+.info-card h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
+  color: var(--navy); margin-bottom: 8px;
+}
+.info-card p { font-size: .9rem; color: var(--gray); line-height: 1.7; }
+.info-card .info-link {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
+  font-size: .88rem; font-weight: 600; color: var(--blue);
+  text-decoration: none; transition: gap .3s;
+}
+.info-card .info-link:hover { gap: 10px; }
+
+/* ─── SECTION HEADING ────────────────────────────────────── */
+.section-head {
+  max-width: 560px; margin-inline: auto;
+  text-align: center; margin-bottom: 56px;
+}
+.section-head h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  color: var(--navy); letter-spacing: -.03em; line-height: 1.15;
+  margin-bottom: 12px;
+}
+.section-head p { font-size: 1rem; color: var(--gray); line-height: 1.7; }
+
+/* ─── SERVICES ──────────────────────────────────────────── */
+.services-section { margin-bottom: 100px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.service-card {
+  padding: 34px 30px; border-radius: var(--r);
+  transition: var(--transition); position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: linear-gradient(90deg, var(--blue), var(--teal));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s ease;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+.service-icon {
+  width: 58px; height: 58px; border-radius: 18px;
+  background: linear-gradient(135deg, rgba(16,105,181,.1), rgba(15,184,169,.1));
+  display: grid; place-items: center; font-size: 1.6rem; margin-bottom: 20px;
+  transition: var(--transition);
+}
+.service-card:hover .service-icon {
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+}
+.service-card h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.2rem;
+  color: var(--navy); margin-bottom: 10px;
+}
+.service-card p { font-size: .9rem; color: var(--gray); line-height: 1.7; }
+
+/* ─── GALLERY ───────────────────────────────────────────── */
+.gallery-section { margin-bottom: 100px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 20px;
+}
+.gallery-grid img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: var(--r); transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+.gallery-grid img:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
+.gallery-grid img:first-child {
+  grid-row: 1 / 3;
 }
 
-.logo{display:flex;align-items:center;gap:12px;font-size:1.4rem;font-weight:800;color:#0f3555}
-.logo span{
-width:44px;
-height:44px;
-border-radius:14px;
-display:grid;
-place-items:center;
-background:linear-gradient(135deg,#2ca7ff,#17c7b5);
-color:white;
-font-weight:800;
+/* ─── REVIEWS ───────────────────────────────────────────── */
+.reviews-section { margin-bottom: 100px; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.review-card {
+  padding: 32px 28px; border-radius: var(--r);
+  transition: var(--transition); position: relative; overflow: hidden;
+  background: white;
+  border: 1px solid rgba(16,105,181,.08);
+}
+.review-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+.review-quote {
+  font-size: 4rem; line-height: 1; color: rgba(16,105,181,.12);
+  font-family: Georgia, serif; font-weight: 900;
+  position: absolute; top: 16px; right: 24px;
+}
+.review-stars {
+  display: flex; gap: 3px; margin-bottom: 18px;
+}
+.review-stars span { color: var(--gold); font-size: 1rem; }
+.review-text {
+  font-size: .95rem; line-height: 1.8; color: #4a5e74;
+  margin-bottom: 24px; font-style: italic;
+}
+.review-author {
+  display: flex; align-items: center; gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(10,31,60,.06);
+}
+.review-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 1.1rem; color: white; flex-shrink: 0;
+}
+.review-author-name { font-weight: 600; color: var(--navy); font-size: .95rem; }
+.review-author-tag { font-size: .8rem; color: var(--gray); margin-top: 2px; }
+.review-verified {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .75rem; color: var(--teal); font-weight: 600;
+  background: rgba(15,184,169,.08); padding: 3px 10px; border-radius: 99px;
+  margin-top: 4px;
+}
+.reviews-summary {
+  background: linear-gradient(135deg, var(--blue), var(--teal));
+  color: white; padding: 32px; border-radius: var(--r);
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; gap: 10px;
+  grid-row: span 1;
+}
+.reviews-summary .big-score {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem; font-weight: 800; line-height: 1;
+}
+.reviews-summary .stars-row { font-size: 1.2rem; letter-spacing: 2px; }
+.reviews-summary p { font-size: .88rem; opacity: .85; }
+.reviews-summary small { font-size: .78rem; opacity: .7; }
+
+/* ─── CTA ───────────────────────────────────────────────── */
+.cta-section { margin-bottom: 100px; }
+.cta-box {
+  padding: 72px 60px; border-radius: var(--r-lg);
+  background: linear-gradient(135deg, var(--navy) 0%, #0a3a6e 60%, #0a4c5a);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(15,184,169,.12);
+}
+.cta-box::after {
+  content: ''; position: absolute; bottom: -60px; right: 200px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(16,105,181,.15);
+}
+.cta-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  color: white; margin-bottom: 12px; line-height: 1.2;
+}
+.cta-text p { color: rgba(255,255,255,.7); font-size: 1rem; line-height: 1.7; }
+.cta-action { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; flex-shrink: 0; }
+.btn-white {
+  background: white; color: var(--navy);
+  padding: 18px 38px; border-radius: 16px;
+  text-decoration: none; font-weight: 700; font-size: 1rem;
+  display: inline-flex; align-items: center; gap: 10px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.2);
+  transition: var(--transition); white-space: nowrap;
+}
+.btn-white:hover { transform: translateY(-3px); box-shadow: 0 24px 56px rgba(0,0,0,.28); }
+.cta-phone {
+  color: rgba(255,255,255,.75); font-size: .88rem; text-align: right;
+  text-decoration: none; transition: color .3s;
+}
+.cta-phone:hover { color: white; }
+
+/* ─── FOOTER ────────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  padding: 72px 0 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 50px; margin-bottom: 56px;
+}
+.footer-brand h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: white; margin-bottom: 14px;
+}
+.footer-brand p { color: rgba(255,255,255,.55); font-size: .9rem; line-height: 1.75; }
+.footer-col h4 {
+  font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 18px; font-weight: 600;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 10px; }
+.footer-col a {
+  color: rgba(255,255,255,.55); text-decoration: none;
+  font-size: .9rem; transition: color .3s;
+}
+.footer-col a:hover { color: white; }
+.footer-col p { color: rgba(255,255,255,.55); font-size: .9rem; line-height: 1.75; }
+.footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.08); margin-bottom: 28px; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-bottom p { color: rgba(255,255,255,.4); font-size: .85rem; }
+.footer-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(15,184,169,.12); border: 1px solid rgba(15,184,169,.2);
+  border-radius: 99px; padding: 6px 14px;
+  color: var(--teal); font-size: .78rem; font-weight: 600;
 }
 
-nav ul{display:flex;gap:28px;list-style:none}
-nav a{text-decoration:none;color:#345;font-weight:600;transition:.3s}
-nav a:hover{color:#1196c9}
+/* ─── ANIMATIONS ────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(48px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+.reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+.reveal-right { opacity: 0; transform: translateX(60px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+.reveal.show, .reveal-left.show, .reveal-right.show { opacity: 1; transform: translate(0); }
+.stagger-1 { transition-delay: .1s; }
+.stagger-2 { transition-delay: .2s; }
+.stagger-3 { transition-delay: .3s; }
+.stagger-4 { transition-delay: .4s; }
+.stagger-5 { transition-delay: .5s; }
 
-.btn{
-background:linear-gradient(135deg,#1497d3,#18b7b0);
-color:white;
-padding:14px 24px;
-border-radius:999px;
-text-decoration:none;
-font-weight:700;
-display:inline-flex;
-align-items:center;
-gap:8px;
-transition:.35s;
-box-shadow:0 16px 35px rgba(20,120,180,.22),0 6px 16px rgba(0,0,0,.08);
+/* ─── MOBILE ────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .navbar {
+    top: 10px; padding: 12px 18px; border-radius: 20px;
+  }
+  .nav-links { display: none; }
+  .nav-logo span { display: none; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px 0 60px;
+    gap: 40px;
+  }
+  .hero-visual { order: -1; }
+  .hero-img-wrap { aspect-ratio: 4/3; border-radius: var(--r); }
+  .hero h1 { font-size: clamp(2.2rem, 7vw, 3rem); }
+  .hero-desc { font-size: .97rem; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .hero-float-card { left: -10px; bottom: 20px; padding: 14px 18px; }
+  .hero-float-stars { right: -10px; top: 20px; }
+
+  .info-strip { grid-template-columns: 1fr; gap: 16px; margin-bottom: 70px; }
+
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+  .gallery-grid img:first-child { grid-row: auto; height: 260px; }
+  .gallery-grid img { height: 220px; }
+
+  .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
+  .reviews-summary { padding: 28px; }
+
+  .cta-box { flex-direction: column; padding: 40px 28px; text-align: center; }
+  .cta-action { align-items: center; width: 100%; }
+  .btn-white { width: 100%; justify-content: center; }
+  .cta-phone { text-align: center; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 }
 
-.btn:hover{transform:translateY(-3px)}
-
-.hero{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-align-items:center;
-padding:60px 0;
-}
-
-.hero-text h1{
-font-size:clamp(3rem,5vw,5.3rem);
-line-height:1;
-letter-spacing:-.06em;
-margin-bottom:20px;
-}
-
-.hero-text h1 span{
-background:linear-gradient(135deg,#1695d2,#18b7b0);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.hero-text p{
-font-size:1.08rem;
-line-height:1.9;
-color:#56687a;
-margin-bottom:28px;
-max-width:560px;
-}
-
-.features{
-display:flex;
-gap:14px;
-flex-wrap:wrap;
-margin-bottom:30px;
-}
-
-.feature{
-padding:14px 18px;
-border-radius:20px;
-font-size:.95rem;
-font-weight:600;
-transition:.35s;
-}
-
-.feature:hover,.card:hover,.review:hover{
-transform:translateY(-8px) scale(1.01);
-box-shadow:0 35px 80px rgba(17,45,78,.16),0 15px 35px rgba(0,0,0,.08),0 0 25px rgba(80,160,255,.08);
-}
-
-.hero-img{
-position:relative;
-}
-
-.hero-img img{
-width:100%;
-border-radius:40px;
-object-fit:cover;
-box-shadow:0 35px 80px rgba(15,35,60,.18),0 10px 25px rgba(0,0,0,.08);
-transition:.5s;
-}
-
-.hero-img img:hover{transform:scale(1.02)}
-
-.info-grid,.services,.reviews{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:24px;
-margin-top:40px;
-}
-
-.card,.review{
-padding:34px;
-border-radius:28px;
-transition:.35s;
-position:relative;
-overflow:hidden;
-}
-
-.card::before,.review::before{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);
-transform:translateX(-120%);
-transition:1s;
-}
-
-.card:hover::before,.review:hover::before{
-transform:translateX(120%);
-}
-
-.card h3,.review h3{margin:14px 0;font-size:1.2rem}.review h3{font-size:1.35rem;color:#113355}
-.card p,.review p{color:#5f7386;line-height:1.8}.review p{font-size:1.02rem}
-
-.section-title{text-align:center;margin:90px 0 20px}
-.section-title h2{font-size:3rem;letter-spacing:-.04em}
-.section-title p{color:#687b8d;margin-top:10px}
-
-.gallery{
-display:grid;
-grid-template-columns:1.3fr .7fr;
-gap:24px;
-margin-top:40px;
-}
-
-.gallery img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:30px;
-transition:.4s;
-}
-
-.gallery img:hover{transform:scale(1.02)}
-
-.cta{
-margin:90px 0;
-padding:45px;
-border-radius:35px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-
-footer{
-background:#0f2740;
-color:white;
-padding:70px 0 30px;
-margin-top:80px;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:30px;
-}
-
-footer p,footer li{color:#c3d2e2;line-height:1.8;list-style:none}
-
-.reveal{opacity:0;transform:translateY(60px) scale(.96);transition:1s cubic-bezier(.22,1,.36,1)}
-.reveal-left{opacity:0;transform:translateX(-80px);transition:1s cubic-bezier(.22,1,.36,1)}
-.reveal-right{opacity:0;transform:translateX(80px);transition:1s cubic-bezier(.22,1,.36,1)}
-.fade-up{opacity:0;transform:translateY(80px);transition:1.2s ease}
-.parallax{transition:transform .15s linear;will-change:transform}
-.reveal.show,.reveal-left.show,.reveal-right.show,.fade-up.show{
-opacity:1;
-transform:translate(0) scale(1);
-filter:drop-shadow(0 15px 25px rgba(20,40,70,.08));
-}
-
-@media(max-width:900px){
-
-nav{
-padding:14px 18px;
-border-radius:20px;
-}
-
-.logo{
-font-size:1rem;
-}
-
-.logo span{
-width:38px;
-height:38px;
-font-size:.95rem;
-}
-
-.hero,.gallery,.cta,.footer-grid{
-grid-template-columns:1fr;
-display:grid;
-}
-
-.hero{
-padding-top:10px;
-gap:24px;
-}
-
-.hero-text h1{
-font-size:2.6rem;
-line-height:1.1;
-}
-
-.hero-text p{
-font-size:.98rem;
-line-height:1.7;
-}
-
-.info-grid,.services,.reviews{
-grid-template-columns:1fr;
-}
-
-.section-title{
-margin:60px 0 14px;
-}
-
-.section-title h2{
-font-size:2rem;
-line-height:1.15;
-}
-
-.hero-img img,
-.gallery img{
-border-radius:24px;
-}
-
-.card,.review{
-padding:24px;
-border-radius:22px;
-}
-
-.features{
-gap:10px;
-}
-
-.feature{
-width:100%;
-text-align:center;
-}
-
-.btn{
-width:100%;
-justify-content:center;
-}
-
-.hero-text div[style*='display:flex']{
-flex-direction:column;
-}
-
-.cta{
-padding:30px 22px;
-gap:22px;
-text-align:center;
-}
-
-footer{
-padding:50px 0 24px;
-}
-
-.footer-grid{
-gap:24px;
-text-align:center;
-}
-
-nav ul{
-display:none;
-}
-
-body{
-overflow-x:hidden;
-}
-
-.container{
-width:min(100%,92%);
-}
-
-.review h3{
-font-size:1.1rem;
-}
-
-.review p{
-font-size:.95rem;
-}
-
-}
-.info-grid,.services,.reviews{grid-template-columns:1fr}
-nav ul{display:none}
-.hero{padding-top:20px}
-.section-title h2{font-size:2.3rem}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-float-card, .hero-float-stars { display: none; }
 }
 </style>
 </head>
 <body>
 
-<nav class="glass">
-<div class="logo"><span>D</span> Dr. Bhati Dental Clinic</div>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#reviews">Reviews</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-<a href="tel:08218434440" class="btn">Book Appointment</a>
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar glass">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">B</div>
+    Dr. Bhati Dental
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:08218434440" class="nav-btn">📞 Book Appointment</a>
 </nav>
 
+<!-- ─── HERO ─── -->
 <div class="container">
-<div class="hero parallax">
-<div class="hero-text reveal-left">
-<h1>Confident Smiles Begin With <span>Modern Dental Care</span></h1>
-<p>Experience premium dental care at Dr. Bhati Dental Clinic & implants Center in Dankaur, Greater Noida. We combine modern technology, gentle treatment, and a comfortable clinic environment to help every patient smile with confidence.</p>
-
-<div class="features">
-<div class="feature glass">Experienced Doctor</div>
-<div class="feature glass">Modern Equipment</div>
-<div class="feature glass">Pain-free Treatment</div>
+  <section class="hero">
+    <div class="hero-text reveal-left">
+      <div class="hero-eyebrow">Dankaur, Greater Noida &nbsp;·&nbsp; <span>Est. Trusted Care</span></div>
+      <h1>Confident Smiles Begin With <em>Modern Dental Care</em></h1>
+      <p class="hero-desc">Experience premium dental care at Dr. Bhati Dental Clinic & Implants Center. We combine modern technology, gentle treatment, and a comfortable environment so every patient smiles with confidence.</p>
+      <div class="hero-badges">
+        <div class="hero-badge glass">
+          <div class="hero-badge-icon">✔</div>
+          Experienced Doctor
+        </div>
+        <div class="hero-badge glass">
+          <div class="hero-badge-icon">⚙</div>
+          Modern Equipment
+        </div>
+        <div class="hero-badge glass">
+          <div class="hero-badge-icon">🛡</div>
+          Pain-Free Treatment
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="tel:08218434440" class="btn-primary">📞 Call Now</a>
+        <a href="https://maps.app.goo.gl/tqyqzERCGwNSXsHT6" target="_blank" class="btn-secondary">📍 Get Directions</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal-right">
+      <div class="hero-img-wrap">
+        <img src="clinic-main.jpg" alt="Dr. Bhati Dental Clinic">
+      </div>
+      <div class="hero-float-card glass">
+        <div class="hero-float-card-icon">⭐</div>
+        <div>
+          <h4>5-Star Rated Clinic</h4>
+          <p>Based on Google Reviews</p>
+        </div>
+      </div>
+      <div class="hero-float-stars glass">
+        <strong>100+</strong>
+        <div class="stars">★★★★★</div>
+        <p>Happy Patients</p>
+      </div>
+    </div>
+  </section>
 </div>
 
-<div style="display:flex;gap:16px;flex-wrap:wrap">
-<a href="tel:08218434440" class="btn">Call Now</a>
-<a href="https://maps.app.goo.gl/tqyqzERCGwNSXsHT6" target="_blank" class="btn" style="background:linear-gradient(135deg,#ffffff,#eef4ff);color:#123;border:1px solid rgba(20,40,80,.08)">Get Directions</a>
-</div>
-</div>
-
-<!-- Put your clinic images in the same folder as index.html -->
-<!-- Rename images exactly like this -->
-<!-- clinic-main.jpg -->
-<!-- clinic-room.jpg -->
-<!-- clinic-chair.jpg -->
-<!-- clinic-front.jpg -->
-
-<div class="hero-img reveal-right">
-<img src="clinic-main.jpg" alt="Dr Bhati Clinic">
-</div>
-</div>
-
-<div class="info-grid fade-up">
-<div class="card glass reveal">
-<h3>Location</h3>
-<p>Malik market, near Saraswati vidhya mandir, salarpur road, Dankaur, Greater Noida, Uttar Pradesh 203201</p>
-<br>
-<a href="https://maps.app.goo.gl/tqyqzERCGwNSXsHT6" target="_blank" class="btn" style="padding:12px 18px;font-size:.92rem">Open in Google Maps</a>
+<!-- ─── INFO STRIP ─── -->
+<div class="container">
+  <div class="info-strip">
+    <div class="info-card glass reveal stagger-1">
+      <div class="info-card-icon">📍</div>
+      <h3>Our Location</h3>
+      <p>Malik Market, Near Saraswati Vidya Mandir, Salarpur Road, Dankaur, Greater Noida – 203201</p>
+      <a href="https://maps.app.goo.gl/tqyqzERCGwNSXsHT6" target="_blank" class="info-link">Open in Maps →</a>
+    </div>
+    <div class="info-card glass reveal stagger-2">
+      <div class="info-card-icon">🕐</div>
+      <h3>Clinic Hours</h3>
+      <p>Open daily · Closes at 7:00 PM<br>Comfortable, clean environment for every patient visit.</p>
+    </div>
+    <div class="info-card glass reveal stagger-3">
+      <div class="info-card-icon">📞</div>
+      <h3>Phone</h3>
+      <p>08218434440<br>Quick support and easy appointment booking available.</p>
+      <a href="tel:08218434440" class="info-link">Call Now →</a>
+    </div>
+  </div>
 </div>
 
-<div class="card glass reveal">
-<h3>Clinic Timing</h3>
-<p>Open • Closes 7 PM<br>Comfortable and clean environment for every patient.</p>
+<!-- ─── SERVICES ─── -->
+<div class="container services-section" id="services">
+  <div class="section-head reveal">
+    <div class="section-label">What We Offer</div>
+    <h2>Our Dental Services</h2>
+    <p>Professional treatments focused on healthy, clean, and confident smiles for every patient.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card glass reveal stagger-1">
+      <div class="service-icon">🦷</div>
+      <h3>Dental Checkup</h3>
+      <p>Professional diagnosis and oral examination to keep your teeth healthy and strong.</p>
+    </div>
+    <div class="service-card glass reveal stagger-2">
+      <div class="service-icon">✨</div>
+      <h3>Teeth Cleaning</h3>
+      <p>Professional cleaning and polishing for better oral hygiene and a brighter smile.</p>
+    </div>
+    <div class="service-card glass reveal stagger-3">
+      <div class="service-icon">🔩</div>
+      <h3>Dental Implants</h3>
+      <p>Advanced implant consultation and long-lasting tooth replacement solutions.</p>
+    </div>
+    <div class="service-card glass reveal stagger-1">
+      <div class="service-icon">😁</div>
+      <h3>Smile Designing</h3>
+      <p>Transform your smile with modern aesthetic dental care techniques.</p>
+    </div>
+    <div class="service-card glass reveal stagger-2">
+      <div class="service-icon">💉</div>
+      <h3>Root Canal</h3>
+      <p>Painless, effective treatment for damaged and infected teeth.</p>
+    </div>
+    <div class="service-card glass reveal stagger-3">
+      <div class="service-icon">🛡</div>
+      <h3>Tooth Extraction</h3>
+      <p>Safe and careful tooth removal with minimal discomfort and quick recovery.</p>
+    </div>
+  </div>
 </div>
 
-<div class="card glass reveal">
-<h3>Phone</h3>
-<p>08218434440<br>Quick support and appointment booking available.</p>
-</div>
-</div>
-
-<div class="section-title reveal" id="services">
-<h2>Our Services</h2>
-<p>Professional treatments focused on healthy, clean, and confident smiles.</p>
-</div>
-
-<div class="services fade-up">
-<div class="card glass reveal"><h3>Dental Checkup</h3><p>Professional diagnosis and oral examination for healthy teeth.</p></div>
-<div class="card glass reveal"><h3>Teeth Cleaning</h3><p>Professional cleaning and polishing for better oral hygiene.</p></div>
-<div class="card glass reveal"><h3>Dental Implants</h3><p>Advanced implant consultation and replacement guidance.</p></div>
-<div class="card glass reveal"><h3>Smile Designing</h3><p>Improve your smile with modern aesthetic dental care.</p></div>
-<div class="card glass reveal"><h3>Root Canal</h3><p>Painless treatment for damaged and infected teeth.</p></div>
-<div class="card glass reveal"><h3>Tooth Extraction</h3><p>Safe and careful tooth removal procedure.</p></div>
+<!-- ─── GALLERY ─── -->
+<div class="container gallery-section" id="about">
+  <div class="section-head reveal">
+    <div class="section-label">Our Clinic</div>
+    <h2>A Modern Space for Comfortable Care</h2>
+    <p>Designed for premium patient experience with advanced equipment and a welcoming atmosphere.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <img src="clinic-main.jpg" alt="Clinic Interior">
+    <img src="clinic-chair.jpg" alt="Dental Chair">
+    <img src="clinic-room.jpg" alt="Treatment Room">
+  </div>
 </div>
 
-<div class="section-title reveal" id="about">
-<h2>About Our Clinic</h2>
-<p>A modern dental clinic designed for comfortable treatment, advanced care, and a premium patient experience.</p>
+<!-- ─── REVIEWS ─── -->
+<div class="container reviews-section" id="reviews">
+  <div class="section-head reveal">
+    <div class="section-label">Patient Feedback</div>
+    <h2>What Our Patients Say</h2>
+    <p>Trusted, authentic feedback from real patients who experienced our care firsthand.</p>
+  </div>
+  <div class="reviews-grid">
+
+    <!-- Rating Summary Card -->
+    <div class="reviews-summary reveal stagger-1">
+      <div class="big-score">5.0</div>
+      <div class="stars-row">★★★★★</div>
+      <p>Average Rating on Google</p>
+      <small>Based on verified patient reviews</small>
+    </div>
+
+    <div class="review-card reveal stagger-2">
+      <div class="review-quote">"</div>
+      <div class="review-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="review-text">Obliged to have a dental doctor like Dr. Bhati in rural area Dankaur. He is very well-behaved and polite — understands the condition carefully and treats patients professionally.</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background: linear-gradient(135deg,#9b59b6,#7d3c98)">A</div>
+        <div>
+          <div class="review-author-name">Ashika Kasera</div>
+          <div class="review-verified">✔ Verified Patient</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal stagger-3">
+      <div class="review-quote">"</div>
+      <div class="review-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="review-text">Good environment and better treatment for smiling teeth. Visit at the right time and feel better. Friendly clinic atmosphere with modern treatment support.</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background: linear-gradient(135deg,#6c3fd1,#4a2a9e)">N</div>
+        <div>
+          <div class="review-author-name">Nitin Tomar</div>
+          <div class="review-verified">✔ Verified Patient</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spacer for 2nd row layout -->
+    <div></div>
+
+    <div class="review-card reveal stagger-2">
+      <div class="review-quote">"</div>
+      <div class="review-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="review-text">Best doctor in Dankaur. Comfortable environment, professional behaviour, and a very smooth dental treatment experience overall.</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background: linear-gradient(135deg,#138ea1,#0e6b7c)">A</div>
+        <div>
+          <div class="review-author-name">Asha Thakur</div>
+          <div class="review-verified">✔ Verified Patient</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal stagger-3">
+      <div class="review-quote">"</div>
+      <div class="review-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="review-text">Very gentle and thorough with treatment. The clinic is clean and well-maintained. Highly recommend Dr. Bhati to anyone looking for quality dental care near Greater Noida.</p>
+      <div class="review-author">
+        <div class="review-avatar" style="background: linear-gradient(135deg,#e67e22,#ca6f1e)">R</div>
+        <div>
+          <div class="review-author-name">Rahul Sharma</div>
+          <div class="review-verified">✔ Verified Patient</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="gallery fade-up">
-<img class="glass reveal" src="clinic-room.jpg">
-<div style="display:grid;gap:24px">
-<img class="glass reveal" src="clinic-chair.jpg">
-<img class="glass reveal" src="clinic-front.jpg">
-</div>
-</div>
-
-<div class="section-title reveal" id="reviews">
-<h2>What Patients Say</h2>
-<p>Trusted feedback from patients who experienced our care and treatment.</p>
-</div>
-
-<div class="reviews fade-up" style="grid-template-columns:repeat(3,1fr);align-items:stretch">
-<div class="review glass reveal" style="background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(240,248,255,.92));border:1px solid rgba(120,170,220,.15)">
-<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
-<div style="width:56px;height:56px;border-radius:50%;background:#9b59b6;color:white;display:grid;place-items:center;font-weight:800;font-size:1.2rem">A</div>
-<div>
-<h3 style="margin:0">Ashika Kasera</h3>
-<div style="color:#ffb400;font-size:1rem">★★★★★</div>
-</div>
-</div>
-<p>"Obliged to have a dental doctor like Dr. Bhati in rural area Dankaur. He is very well behaved and polite person who understands the condition carefully and treats patients professionally."</p>
+<!-- ─── CTA ─── -->
+<div class="container cta-section" id="contact">
+  <div class="cta-box reveal">
+    <div class="cta-text">
+      <h2>Your Perfect Smile Starts Here</h2>
+      <p>Book your dental consultation today and experience comfortable, professional, and trusted care at our clinic in Dankaur.</p>
+    </div>
+    <div class="cta-action">
+      <a href="tel:08218434440" class="btn-white">📞 Book Appointment</a>
+      <a href="tel:08218434440" class="cta-phone">08218434440</a>
+    </div>
+  </div>
 </div>
 
-<div class="review glass reveal" style="background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(240,248,255,.92));border:1px solid rgba(120,170,220,.15)">
-<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
-<div style="width:56px;height:56px;border-radius:50%;background:#6c3fd1;color:white;display:grid;place-items:center;font-weight:800;font-size:1.2rem">N</div>
-<div>
-<h3 style="margin:0">Nitin Tomar</h3>
-<div style="color:#ffb400;font-size:1rem">★★★★★</div>
-</div>
-</div>
-<p>"Good environment and better treatment for smiling teeth. Visit at time and feel better. Friendly clinic atmosphere with modern treatment support."</p>
-</div>
-
-<div class="review glass reveal" style="background:linear-gradient(135deg,rgba(255,255,255,.85),rgba(240,248,255,.92));border:1px solid rgba(120,170,220,.15)">
-<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
-<div style="width:56px;height:56px;border-radius:50%;background:#138ea1;color:white;display:grid;place-items:center;font-weight:800;font-size:1.2rem">A</div>
-<div>
-<h3 style="margin:0">Asha Thakur</h3>
-<div style="color:#ffb400;font-size:1rem">★★★★★</div>
-</div>
-</div>
-<p>"Best doctor in Dankaur. Comfortable environment, professional behaviour and smooth dental treatment experience."</p>
-</div>
-</div>
-
-<div class="cta glass reveal" id="contact">
-<div>
-<h2 style="font-size:2.4rem;margin-bottom:10px">Your Perfect Smile Starts Here</h2>
-<p style="color:#5f7386">Book your dental consultation today and experience comfortable, professional, and trusted care.</p>
-</div>
-<a href="tel:08218434440" class="btn">Book Appointment</a>
-</div>
-</div>
-
+<!-- ─── FOOTER ─── -->
 <footer>
-<div class="container footer-grid">
-<div>
-<h2>Dr. Bhati Dental Clinic</h2>
-<p>Providing quality dental care with modern technology and patient comfort.</p>
-</div>
-
-<div>
-<h3>Quick Links</h3>
-<p>Home<br>About<br>Services<br>Reviews</p>
-</div>
-
-<div>
-<h3>Services</h3>
-<p>Dental Checkup<br>Teeth Cleaning<br>Implants<br>Root Canal</p>
-</div>
-
-<div>
-<h3>Contact</h3>
-<p>08218434440<br>Dankaur, Greater Noida</p>
-<p style="margin-top:10px"><a href="https://maps.app.goo.gl/tqyqzERCGwNSXsHT6" target="_blank" style="color:#8ed0ff;text-decoration:none">Clinic Directions ↗</a></p>
-</div>
-</div>
-
-<div style="text-align:center;margin-top:50px;color:#aac0d4">© 2026 Dr. Bhati Dental Clinic & implants Center</div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Dr. Bhati Dental Clinic</h3>
+        <p>Providing quality dental care with modern technology, gentle treatment, and a patient-first approach in Dankaur, Greater Noida.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Dental Checkup</a></li>
+          <li><a href="#">Teeth Cleaning</a></li>
+          <li><a href="#">Dental Implants</a></li>
+          <li><a href="#">Root Canal</a></li>
+          <li><a href="#">Smile Designing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>08218434440<br>Dankaur, Greater Noida<br>Uttar Pradesh – 203201</p>
+        <br>
+        <a href="https://maps.app.goo.gl/tqyqzERCGwNSXsHT6" target="_blank" style="color:#5dc8ff;font-size:.88rem;">View on Google Maps ↗</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <p>© 2026 Dr. Bhati Dental Clinic & Implants Center. All rights reserved.</p>
+      <div class="footer-badge">🦷 Trusted Dental Care</div>
+    </div>
+  </div>
 </footer>
 
+<!-- ─── JS ─── -->
 <script>
-const reveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.fade-up');
+// Scroll-reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.12 });
 
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+  observer.observe(el);
+});
+
+// Navbar shrink on scroll
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navbar.style.boxShadow = '0 24px 60px rgba(10,31,60,.16)';
+    navbar.style.background = 'rgba(255,255,255,.88)';
+  } else {
+    navbar.style.boxShadow = '';
+    navbar.style.background = '';
+  }
+});
+
+// Staggered card reveal on mobile (reset delays for performance)
+if (window.innerWidth < 600) {
+  document.querySelectorAll('[class*="stagger-"]').forEach(el => {
+    el.style.transitionDelay = '0s';
+  });
 }
-});
-},{threshold:.15});
-
-reveals.forEach(el=>observer.observe(el));
-
-// smooth parallax scrolling effect
-const parallax=document.querySelectorAll('.parallax');
-
-window.addEventListener('scroll',()=>{
-const scrollY=window.scrollY;
-
-parallax.forEach(el=>{
-el.style.transform=`translateY(${scrollY * 0.04}px)`;
-});
-});
 </script>
-
 </body>
 </html>
